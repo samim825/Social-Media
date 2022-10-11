@@ -2,6 +2,7 @@ package com.media.social.Social.Media.config;
 
 import com.media.social.Social.Media.model.User;
 import com.media.social.Social.Media.repository.UserRepository;
+import com.media.social.Social.Media.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,12 +18,12 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UserServiceImpl userService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        User user = userRepository.findByEmail(email);
+        User user = userService.findByEmail(email);
 
 //        HttpServletRequest request=null;
 //        HttpSession session = request.getSession();

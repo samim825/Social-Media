@@ -8,7 +8,7 @@
                         <div class="header-top-navigation">
                             <nav>
                                 <ul>
-                                    <li class="active"><a href="home.jsp">home</a></li>
+                                    <li class="active"><a href="/">home</a></li>
                                     <li class="msg-trigger"><a class="msg-trigger-btn" href="#a">message</a>
                                         <div class="message-dropdown" id="a">
                                             <div class="dropdown-title">
@@ -30,7 +30,7 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content">
-                                                        <h6 class="author"><a href="profile.jsp">Mili Raoulin</a></h6>
+                                                        <h6 class="author"><a href="/profile">Mili Raoulin</a></h6>
                                                         <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default</p>
                                                     </div>
                                                     <!-- message content end -->
@@ -52,7 +52,7 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content">
-                                                        <h6 class="author"><a href="profile.jsp">Jhon Doe</a></h6>
+                                                        <h6 class="author"><a href="/profile">Jhon Doe</a></h6>
                                                         <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default</p>
                                                     </div>
                                                     <!-- message content end -->
@@ -74,7 +74,7 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content">
-                                                        <h6 class="author"><a href="profile.jsp">Jon Wileyam</a></h6>
+                                                        <h6 class="author"><a href="/profile">Jon Wileyam</a></h6>
                                                         <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default</p>
                                                     </div>
                                                     <!-- message content end -->
@@ -112,8 +112,8 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content notification-content">
-                                                        <a href="profile.jsp">Robert Faul</a>,
-                                                        <a href="profile.jsp">william jhon</a>
+                                                        <a href="/profile">Robert Faul</a>,
+                                                        <a href="/profile">william jhon</a>
                                                         <p>and 35 other people reacted to your photo</p>
                                                     </div>
                                                     <!-- message content end -->
@@ -135,8 +135,8 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content notification-content">
-                                                        <a href="profile.jsp">Robert mushkil</a>,
-                                                        <a href="profile.jsp">Terry jhon</a>
+                                                        <a href="/profile">Robert mushkil</a>,
+                                                        <a href="/profile">Terry jhon</a>
                                                         <p>and 20 other people reacted to your photo</p>
                                                     </div>
                                                     <!-- message content end -->
@@ -158,8 +158,8 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content notification-content">
-                                                        <a href="profile.jsp">Horijon Mbala</a>,
-                                                        <a href="profile.jsp">Bashu jhon</a>
+                                                        <a href="/profile">Horijon Mbala</a>,
+                                                        <a href="/profile">Bashu jhon</a>
                                                         <p>and 55 other people reacted to your post</p>
                                                     </div>
                                                     <!-- message content end -->
@@ -186,7 +186,7 @@
                     <div class="col-md-2">
                         <!-- brand logo start -->
                         <div class="brand-logo text-center">
-                            <a href="home.jsp">
+                            <a href="/">
                                 <img src="assets/images/logo/logo.png" alt="brand logo">
                             </a>
                         </div>
@@ -220,7 +220,7 @@
                                         </div>
                                         <div class="profile-body">
                                             <ul>
-                                                <li><a href="profile.jsp"><i class="flaticon-user"></i>Profile</a></li>
+                                                <li><a href="/profile"><i class="flaticon-user"></i>Profile</a></li>
                                                 <li><a href="#"><i class="flaticon-message"></i>Inbox</a></li>
                                                 <li><a href="#"><i class="flaticon-document"></i>Activity</a></li>
                                             </ul>

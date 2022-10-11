@@ -2,6 +2,7 @@ package com.media.social.Social.Media.config;
 
 import com.media.social.Social.Media.model.User;
 import com.media.social.Social.Media.repository.UserRepository;
+import com.media.social.Social.Media.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -18,7 +19,7 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
 
     @Autowired
-    UserRepository userRepository;
+    UserServiceImpl userService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
@@ -26,11 +27,10 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                                         Authentication authentication) throws IOException, ServletException {
         System.out.println("----- Authentication Success-----" + authentication.getName());
 
-        User user = userRepository.findByEmail(authentication.getName());
+        User user = userService.findByEmail(authentication.getName());
         HttpSession session = request.getSession();
         session.setAttribute("user",user);
-        session.setAttribute("email", user.getEmail());
-        session.setAttribute("id",user.getId());
+
         System.out.println("User email from onAuthenticationSuccess : "+session.getAttribute("email") );
 
         if (session != null) {
