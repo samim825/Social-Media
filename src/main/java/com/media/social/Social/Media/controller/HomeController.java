@@ -6,20 +6,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public ModelAndView homePage(HttpSession session){
 
         ModelAndView modelAndView = new ModelAndView();
-        String email = (String) session.getAttribute("email");
 
-        System.out.println("Email from homepage controller : "+email);
-        System.out.println("Home page visited");
-        modelAndView.addObject("email", email);
+        modelAndView.addObject("user", session.getAttribute("user"));
         modelAndView.setViewName("home");
         return modelAndView;
     }
@@ -59,7 +57,7 @@ public class HomeController {
         return "registration";
     }
 
-    @GetMapping({"/","/index","/login"})
+    @GetMapping("/login")
     public String loginPage(){
 
         System.out.println("login page visited");

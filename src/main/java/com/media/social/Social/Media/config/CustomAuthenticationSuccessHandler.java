@@ -31,6 +31,7 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         session.setAttribute("user",user);
         session.setAttribute("email", user.getEmail());
         session.setAttribute("id",user.getId());
+        System.out.println("User email from onAuthenticationSuccess : "+session.getAttribute("email") );
 
         if (session != null) {
             String redirectUrl = (String) session.getAttribute("url_prior_login");

@@ -214,9 +214,9 @@
                                     </a>
                                     <div class="profile-dropdown">
                                         <div class="profile-head">
-                                            <h5 class="name"><a href="#">Madison Howard</a></h5>
+                                            <h5 class="name"><a href="#">${user.getFirstName()} ${user.getLastName()}</a></h5>
 
-                                            <a class="mail" href="#">${email}</a>
+                                            <a class="mail" href="#">${user.getEmail()}</a>
                                         </div>
                                         <div class="profile-body">
                                             <ul>
