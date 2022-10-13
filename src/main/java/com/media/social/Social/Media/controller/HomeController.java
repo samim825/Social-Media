@@ -1,23 +1,44 @@
 package com.media.social.Social.Media.controller;
 
 
+import com.media.social.Social.Media.helper.DateFormatter;
+import com.media.social.Social.Media.model.Post;
 import com.media.social.Social.Media.model.User;
+import com.media.social.Social.Media.service.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
+    @Autowired
+    private UserServiceImpl userService;
     @GetMapping("/")
     public ModelAndView homePage(HttpSession session){
 
+        System.out.println("Home method visited..");
+
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.addObject("user", session.getAttribute("user"));
+        User user = (User) session.getAttribute("user");
+        User user1 = userService.findByEmail(user.getEmail());
+        List<Post> postList =  user1.getPostList();
+        for(Post post : postList){
+            System.out.println(post.getContent());
+
+            Date date = new Date();
+            Date date1 = post.getPostingDate();
+            System.out.println(DateFormatter.findDateDifference(date, date1));
+        }
+
+        modelAndView.addObject("user", user1);
         modelAndView.setViewName("home");
         return modelAndView;
     }

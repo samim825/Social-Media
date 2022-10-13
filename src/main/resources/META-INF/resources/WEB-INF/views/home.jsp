@@ -1,5 +1,12 @@
+<%@ page import="com.media.social.Social.Media.model.Post" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.media.social.Social.Media.model.User" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="com.media.social.Social.Media.helper.DateFormatter" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
- pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1"%>
  <%@ page session="true"%>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -135,93 +142,135 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
+                                            <form action="/api/post" method="POST">
+
                                             <div class="modal-body custom-scroll">
-                                                <textarea name="share" class="share-field-big custom-scroll" placeholder="Say Something"></textarea>
+                                                <textarea name="content" class="share-field-big custom-scroll" placeholder="Say Something"></textarea>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
-                                                <button type="button" class="post-share-btn">post</button>
+                                                <button type="submit" class="post-share-btn">post</button>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Modal end -->
                             </div>
                         </div>
-                        <!-- share box end -->
 
-                        <!-- post status start -->
-                        <div class="card">
-                            <!-- post title start -->
-                            <div class="post-title d-flex align-items-center">
-                                <!-- profile picture end -->
-                                <div class="profile-thumb">
-                                    <a href="#">
-                                        <figure class="profile-thumb-middle">
-                                            <img src="assets/images/profile/profile-small-1.jpg" alt="profile picture">
-                                        </figure>
-                                    </a>
-                                </div>
-                                <!-- profile picture end -->
-
-                                <div class="posted-author">
-                                    <h6 class="author"><a href="profile.jsp">merry watson</a></h6>
-                                    <span class="post-time">20 min ago</span>
-                                </div>
-
-                                <div class="post-settings-bar">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <div class="post-settings arrow-shape">
-                                        <ul>
-                                            <li><button>copy link to adda</button></li>
-                                            <li><button>edit post</button></li>
-                                            <li><button>embed adda</button></li>
-                                        </ul>
+                        <!-- Edit Modal start -->
+                        <div class="modal fade" id="editbox" aria-labelledby="textbox">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Share Your Mood</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- post title start -->
-                            <div class="post-content">
-                                <p class="post-desc">
-                                    Many desktop publishing packages and web page editors now use Lorem Ipsum as their
-                                    default model text, and a search for 'lorem ipsum' will uncover many web sites still
-                                    in their infancy.
-                                </p>
-                                <div class="post-thumb-gallery">
-                                    <figure class="post-thumb img-popup">
-                                        <a href="assets/images/post/post-large-1.jpg">
-                                            <img src="assets/images/post/post-1.jpg" alt="post image">
-                                        </a>
-                                    </figure>
-                                </div>
-                                <div class="post-meta">
-                                    <button class="post-meta-like">
-                                        <i class="bi bi-heart-beat"></i>
-                                        <span>You and 201 people like this</span>
-                                        <strong>201</strong>
-                                    </button>
-                                    <ul class="comment-share-meta">
-                                        <li>
-                                            <button class="post-comment">
-                                                <i class="bi bi-chat-bubble"></i>
-                                                <span>41</span>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="post-share">
-                                                <i class="bi bi-share"></i>
-                                                <span>07</span>
-                                            </button>
-                                        </li>
-                                    </ul>
+                                    <form action="/api/post" method="POST">
+
+                                        <div class="modal-body custom-scroll">
+                                            <textarea> name="content" class="share-field-big custom-scroll" value="" </textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
+                                            <button type="submit" class="post-share-btn">post</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+                        <!-- Edit modal end -->
+
+                        <!-- post status start -->
+<%--                        <div class="card">--%>
+<%--                            <!-- post title start -->--%>
+<%--                            <div class="post-title d-flex align-items-center">--%>
+<%--                                <!-- profile picture end -->--%>
+<%--                                <div class="profile-thumb">--%>
+<%--                                    <a href="#">--%>
+<%--                                        <figure class="profile-thumb-middle">--%>
+<%--                                            <img src="assets/images/profile/profile-small-1.jpg" alt="profile picture">--%>
+<%--                                        </figure>--%>
+<%--                                    </a>--%>
+<%--                                </div>--%>
+<%--                                <!-- profile picture end -->--%>
+
+<%--                                <div class="posted-author">--%>
+<%--                                    <h6 class="author"><a href="profile.jsp">merry watson</a></h6>--%>
+<%--                                    <span class="post-time">20 min ago</span>--%>
+<%--                                </div>--%>
+
+<%--                                <div class="post-settings-bar">--%>
+<%--                                    <span></span>--%>
+<%--                                    <span></span>--%>
+<%--                                    <span></span>--%>
+<%--                                    <div class="post-settings arrow-shape">--%>
+<%--                                        <ul>--%>
+<%--                                            <li><button>copy link to adda</button></li>--%>
+<%--                                            <li><button>edit post</button></li>--%>
+<%--                                            <li><button>embed adda</button></li>--%>
+<%--                                        </ul>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <!-- post title start -->--%>
+<%--                            <div class="post-content">--%>
+<%--                                <p class="post-desc">--%>
+<%--                                    Many desktop publishing packages and web page editors now use Lorem Ipsum as their--%>
+<%--                                    default model text, and a search for 'lorem ipsum' will uncover many web sites still--%>
+<%--                                    in their infancy.--%>
+<%--                                </p>--%>
+<%--                                <div class="post-thumb-gallery">--%>
+<%--                                    <figure class="post-thumb img-popup">--%>
+<%--                                        <a href="assets/images/post/post-large-1.jpg">--%>
+<%--                                            <img src="assets/images/post/post-1.jpg" alt="post image">--%>
+<%--                                        </a>--%>
+<%--                                    </figure>--%>
+<%--                                </div>--%>
+<%--                                <div class="post-meta">--%>
+<%--                                    <button class="post-meta-like">--%>
+<%--                                        <i class="bi bi-heart-beat"></i>--%>
+<%--                                        <span>You and 201 people like this</span>--%>
+<%--                                        <strong>201</strong>--%>
+<%--                                    </button>--%>
+<%--                                    <ul class="comment-share-meta">--%>
+<%--                                        <li>--%>
+<%--                                            <button class="post-comment">--%>
+<%--                                                <i class="bi bi-chat-bubble"></i>--%>
+<%--                                                <span>41</span>--%>
+<%--                                            </button>--%>
+<%--                                        </li>--%>
+<%--                                        <li>--%>
+<%--                                            <button class="post-share">--%>
+<%--                                                <i class="bi bi-share"></i>--%>
+<%--                                                <span>07</span>--%>
+<%--                                            </button>--%>
+<%--                                        </li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                         <!-- post status end -->
 
                         <!-- post status start -->
+
+                        <% User user = (User) request.getAttribute("user");
+                            List<Post> postList = user.getPostList();
+//
+//                            Collections.sort(postList, Comparator.comparing(Post::getPostingDate));
+                            Collections.sort(postList, (post1, post2) -> post2.getPostingDate().compareTo(post1.getPostingDate()));
+
+//                            Collections.sort(postList, Collections.reverseOrder());
+//                            assertEquals(employees, employeesSortedByDateDesc);
+
+                            for(Post post : postList){
+
+                                String date =  DateFormatter.findDateDifference(new Date() , post.getPostingDate());
+
+                         %>
                         <div class="card">
                             <!-- post title start -->
                             <div class="post-title d-flex align-items-center">
@@ -236,8 +285,8 @@
                                 <!-- profile picture end -->
 
                                 <div class="posted-author">
-                                    <h6 class="author"><a href="profile.jsp">Jon Wileyam</a></h6>
-                                    <span class="post-time">15 min ago</span>
+                                    <h6 class="author"><a href="/profile">${user.getFirstName()} ${user.getLastName()}</a></h6>
+                                    <span class="post-time"><%=date %></span>
                                 </div>
 
                                 <div class="post-settings-bar">
@@ -247,7 +296,8 @@
                                     <div class="post-settings arrow-shape">
                                         <ul>
                                             <li><button>copy link to adda</button></li>
-                                            <li><button>edit post</button></li>
+                                            <li><button name="edit"  aria-disabled="true"  data-toggle="modal" data-target="#editbox" >edit post</button></li>
+
                                             <li><button>embed adda</button></li>
                                         </ul>
                                     </div>
@@ -256,105 +306,141 @@
                             <!-- post title start -->
                             <div class="post-content">
                                 <p class="post-desc pb-0">
-                                    Many desktop publishing packages and web page editors now use Lorem Ipsum as their
-                                    default model text, and a search for
+                                  <%=post.getContent() %>
                                 </p>
                                 <div class="post-meta">
                                     <button class="post-meta-like">
-                                        <i class="bi bi-heart-beat"></i>
-                                        <span>You and 206 people like this</span>
+<%--                                        <i class="bi bi-heart-beat"></i>--%>
+                                        <i class="fa fa-thumbs-up"></i>
+                                        <span><%=post.getTotalLike() %> people like this</span>
                                         <strong>206</strong>
                                     </button>
                                     <ul class="comment-share-meta">
                                         <li>
-                                            <button class="post-comment">
-                                                <i class="bi bi-chat-bubble"></i>
-                                                <span>41</span>
-                                            </button>
+                                            <a href="/#">
+                                                <img src="assets/images/icons/heart-color.png">
+                                            </a>
+                                            <span><%=post.getTotalLike() %></span>
                                         </li>
-                                        <li>
-                                            <button class="post-share">
-                                                <i class="bi bi-share"></i>
-                                                <span>07</span>
-                                            </button>
-                                        </li>
+
+
+<%--                                        <div class="col-md-2">--%>
+<%--                                            <!-- brand logo start -->--%>
+<%--                                            <div class="brand-logo text-center">--%>
+<%--                                                <a href="/">--%>
+<%--                                                    <img src="assets/images/logo/logo.png" alt="brand logo">--%>
+<%--                                                </a>--%>
+<%--                                            </div>--%>
+<%--                                            <!-- brand logo end -->--%>
+<%--                                        </div>--%>
+
                                     </ul>
                                 </div>
                             </div>
                         </div>
+
+
+
+                        <% } %>
                         <!-- post status end -->
 
                         <!-- post status start -->
-                        <div class="card">
-                            <!-- post title start -->
-                            <div class="post-title d-flex align-items-center">
-                                <!-- profile picture end -->
-                                <div class="profile-thumb">
-                                    <a href="#">
-                                        <figure class="profile-thumb-middle">
-                                            <img src="assets/images/profile/profile-small-29.jpg" alt="profile picture">
-                                        </figure>
-                                    </a>
-                                </div>
-                                <!-- profile picture end -->
+<%--                        <div class="card">--%>
+<%--                            <!-- post title start -->--%>
+<%--                            <div class="post-title d-flex align-items-center">--%>
+<%--                                <!-- profile picture end -->--%>
+<%--                                <div class="profile-thumb">--%>
+<%--                                    <a href="#">--%>
+<%--                                        <figure class="profile-thumb-middle">--%>
+<%--                                            <img src="assets/images/profile/profile-small-29.jpg" alt="profile picture">--%>
+<%--                                        </figure>--%>
+<%--                                    </a>--%>
+<%--                                </div>--%>
+<%--                                <!-- profile picture end -->--%>
 
-                                <div class="posted-author">
-                                    <h6 class="author"><a href="profile.jsp">william henry</a></h6>
-                                    <span class="post-time">35 min ago</span>
-                                </div>
+<%--                                <div class="posted-author">--%>
+<%--                                    <h6 class="author"><a href="profile.jsp">william henry</a></h6>--%>
+<%--                                    <span class="post-time">35 min ago</span>--%>
+<%--                                </div>--%>
 
-                                <div class="post-settings-bar">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <div class="post-settings arrow-shape">
-                                        <ul>
-                                            <li><button>copy link to adda</button></li>
-                                            <li><button>edit post</button></li>
-                                            <li><button>embed adda</button></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- post title start -->
-                            <div class="post-content">
-                                <p class="post-desc">
-                                    Many desktop publishing packages and web page editors now use Lorem Ipsum as their
-                                    default model text, and a search for 'lorem ipsum' will uncover many web sites still
-                                    in their infancy.
-                                </p>
-                                <div class="plyr__video-embed plyr-youtube">
-                                    <iframe src="https://www.youtube.com/embed/WeA7edXsU40" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-                                <div class="post-meta">
-                                    <button class="post-meta-like">
-                                        <i class="bi bi-heart-beat"></i>
-                                        <span>You and 112 people like this</span>
-                                        <strong>112</strong>
-                                    </button>
-                                    <ul class="comment-share-meta">
-                                        <li>
-                                            <button class="post-comment">
-                                                <i class="bi bi-chat-bubble"></i>
-                                                <span>36</span>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="post-share">
-                                                <i class="bi bi-share"></i>
-                                                <span>08</span>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+<%--                                <div class="post-settings-bar">--%>
+<%--                                    <span></span>--%>
+<%--                                    <span></span>--%>
+<%--                                    <span></span>--%>
+<%--                                    <div class="post-settings arrow-shape">--%>
+<%--                                        <ul>--%>
+<%--                                            <li><button>copy link to adda</button></li>--%>
+<%--                                            <li><button>edit post</button></li>--%>
+<%--                                            <li><button>embed adda</button></li>--%>
+<%--                                        </ul>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <!-- post title start -->--%>
+<%--                            <div class="post-content">--%>
+<%--                                <p class="post-desc">--%>
+<%--                                    Many desktop publishing packages and web page editors now use Lorem Ipsum as their--%>
+<%--                                    default model text, and a search for 'lorem ipsum' will uncover many web sites still--%>
+<%--                                    in their infancy.--%>
+<%--                                </p>--%>
+<%--                                <div class="plyr__video-embed plyr-youtube">--%>
+<%--                                    <iframe src="https://www.youtube.com/embed/WeA7edXsU40" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--%>
+<%--                                </div>--%>
+<%--                                <div class="post-meta">--%>
+<%--                                    <button class="post-meta-like">--%>
+<%--                                        <i class="bi bi-heart-beat"></i>--%>
+<%--                                        <span>You and 112 people like this</span>--%>
+<%--                                        <strong>112</strong>--%>
+<%--                                    </button>--%>
+<%--                                    <ul class="comment-share-meta">--%>
+<%--                                        <li>--%>
+<%--                                            <button class="post-comment">--%>
+<%--                                                <i class="bi bi-chat-bubble"></i>--%>
+<%--                                                <span>36</span>--%>
+<%--                                            </button>--%>
+<%--                                        </li>--%>
+<%--                                        <li>--%>
+<%--                                            <button class="post-share">--%>
+<%--                                                <i class="bi bi-share"></i>--%>
+<%--                                                <span>08</span>--%>
+<%--                                            </button>--%>
+<%--                                        </li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                         <!-- post status end -->
 
                         <!-- post status start -->
                        
 
                     </div>
+
+                    <!-- Edit Modal start -->
+                    <div class="modal fade" id="editbox" aria-labelledby="textbox">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Share Your Mood</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="/api/post" method="PUT">
+
+                                    <div class="modal-body custom-scroll">
+                                        <%--                                            <textarea> name="content" class="share-field-big custom-scroll" value="" </textarea>--%>
+                                        <textarea> name="content" class="share-field-big custom-scroll" </textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
+                                        <button type="submit" class="post-share-btn">Edit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Edit modal end -->
 
                     <div class="col-lg-3 order-3">
                         <aside class="widget-area">
