@@ -4,6 +4,7 @@ package com.media.social.Social.Media.controller;
 import com.media.social.Social.Media.model.Post;
 import com.media.social.Social.Media.model.User;
 import com.media.social.Social.Media.service.PostService;
+import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,17 +23,23 @@ public class PostController {
     @PostMapping
     public String addPost(Post post, HttpSession session){
 
+        System.out.println("Add post controller method visited");
         postService.save(post, session);
 
         return "redirect:/";
     }
 
-    @PutMapping
-    public Post updatePost(Post post){
-        System.out.println("post edit controller visited");
-        return postService.update(post);
+    @PostMapping("/edit")
+    public String updatePost(Post post){
+
+        Post post1 = postService.findById(post.getId()).get();
+        post1.setContent(post.getContent());
+        postService.update(post1);
+
+        return "redirect:/";
     }
 
+    @ResponseBody
     @GetMapping("/id/{id}")
     public Optional<Post> getById(@PathVariable String id){
         return postService.findById(id);
@@ -43,6 +50,7 @@ public class PostController {
         return (List<Post>) postService.findAll();
     }
 
+    @ResponseBody
     @DeleteMapping("/id/{id}")
     public void deletePost(@PathVariable String id){
         postService.deleteById(id);

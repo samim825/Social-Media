@@ -20,7 +20,7 @@ public class HomeController {
 
     @Autowired
     private UserServiceImpl userService;
-    @GetMapping("/")
+    @GetMapping({"/","/home"})
     public ModelAndView homePage(HttpSession session){
 
         System.out.println("Home method visited..");

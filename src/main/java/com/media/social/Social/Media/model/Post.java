@@ -4,16 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "post_table")
+@ToString
 public class Post {
 
     @Id
@@ -39,5 +40,44 @@ public class Post {
     @Column(name = "posting_date")
     private Date postingDate;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Integer getTotalLike() {
+        return totalLike;
+    }
+
+    public void setTotalLike(Integer totalLike) {
+        this.totalLike = totalLike;
+    }
+
+    public Date getPostingDate() {
+        return postingDate;
+    }
+
+    public void setPostingDate(Date postingDate) {
+        this.postingDate = postingDate;
+    }
 
 }

@@ -18,4 +18,5 @@ public interface PostService {
     List<Post> findAll();
 
     void deleteById(String id);
+
 }

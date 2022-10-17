@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
  <%@ page session="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -159,30 +160,6 @@
                             </div>
                         </div>
 
-                        <!-- Edit Modal start -->
-                        <div class="modal fade" id="editbox" aria-labelledby="textbox">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Share Your Mood</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form action="/api/post" method="POST">
-
-                                        <div class="modal-body custom-scroll">
-                                            <textarea> name="content" class="share-field-big custom-scroll" value="" </textarea>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
-                                            <button type="submit" class="post-share-btn">post</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Edit modal end -->
 
                         <!-- post status start -->
 <%--                        <div class="card">--%>
@@ -296,9 +273,14 @@
                                     <div class="post-settings arrow-shape">
                                         <ul>
                                             <li><button>copy link to adda</button></li>
-                                            <li><button name="edit"  aria-disabled="true"  data-toggle="modal" data-target="#editbox" >edit post</button></li>
+                                            <li><button name="edit" data-id="<%=post.getId()%>" class="edit" aria-disabled="true"  data-toggle="modal" data-target="#editbox" >edit post</button></li>
 
-                                            <li><button>embed adda</button></li>
+                                            <li>
+                                                <button  name="delete"  data-id="<%=post.getId()%>" aria-disabled="true"  data-toggle="modal" data-target="#deleteBox" class="postId" value="<%=post.getId()%>">Delete</button>
+<%--                                                <input type="hidden" name="postId" class="postId" value="<%=post.getId()%>">--%>
+<%--                                                <a  href="/api/delete/id/<%=post.getId()%>" >Delete</a>--%>
+
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -322,18 +304,6 @@
                                             </a>
                                             <span><%=post.getTotalLike() %></span>
                                         </li>
-
-
-<%--                                        <div class="col-md-2">--%>
-<%--                                            <!-- brand logo start -->--%>
-<%--                                            <div class="brand-logo text-center">--%>
-<%--                                                <a href="/">--%>
-<%--                                                    <img src="assets/images/logo/logo.png" alt="brand logo">--%>
-<%--                                                </a>--%>
-<%--                                            </div>--%>
-<%--                                            <!-- brand logo end -->--%>
-<%--                                        </div>--%>
-
                                     </ul>
                                 </div>
                             </div>
@@ -416,21 +386,23 @@
 
                     </div>
 
+
                     <!-- Edit Modal start -->
                     <div class="modal fade" id="editbox" aria-labelledby="textbox">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Share Your Mood</h5>
+                                    <h5 class="modal-title">Edit and Share Your Mood</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="/api/post" method="PUT">
+                                <form action="/api/post/edit" method="POST">
 
+                                    <input type="hidden" name="id" id="edit-id">
                                     <div class="modal-body custom-scroll">
                                         <%--                                            <textarea> name="content" class="share-field-big custom-scroll" value="" </textarea>--%>
-                                        <textarea> name="content" class="share-field-big custom-scroll" </textarea>
+                                        <textarea name="content" class="share-field-big custom-scroll" id="edit-content">  </textarea>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
@@ -441,6 +413,30 @@
                         </div>
                     </div>
                     <!-- Edit modal end -->
+
+
+                    <!-- Delete Modal start -->
+                    <div class="modal fade" id="deleteBox" aria-labelledby="textbox">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Are you sure you want to delete this post?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
+                                    <button  class="post-share-btn" id="post-delete">Delete</button>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Delete modal end -->
+
+
 
                     <div class="col-lg-3 order-3">
                         <aside class="widget-area">
@@ -536,5 +532,58 @@
 </body>
 
 
-<!-- Mirrored from demo.hasthemes.com/adda-preview/adda/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 17:10:49 GMT -->
 </html>
+
+<script>
+$(document).ready(function () {
+
+    $('.postId').click(function () {
+        let id = $(this).attr('data-id');
+        console.log("Delete data with id : ", id);
+        // $('.post-delete').setAttribute("value",id);
+        document.getElementById("post-delete").setAttribute("value",id);
+    });
+
+    $('#post-delete').click(function (){
+        let id = $(this).attr("value");
+
+
+        $.ajax({
+                    url: '/api/post/id/'+id,
+                    method: 'DELETE',
+                    contentType: 'application/json',
+                    success: function(html) {
+                       location.reload();
+                        // handle success
+                    },
+                    error: function(request,msg,error) {
+                        // handle failure
+                    }
+                });
+        });
+
+    $('.edit').click(function (){
+
+        let id = $(this).attr('data-id');
+        console.log("Edit data with id : ",id);
+
+        $.ajax({
+            url: '/api/post/id/'+id,
+            method: 'GET',
+            contentType: 'application/json',
+            success: function(post) {
+                // handle success
+                document.getElementById("edit-id").setAttribute("value",post.id);
+                document.getElementById("edit-content").value = post.content;
+                console.log(post.content);
+            },
+            error: function(request,msg,error) {
+                // handle failure
+            }
+        });
+    });
+
+    });
+
+
+</script>

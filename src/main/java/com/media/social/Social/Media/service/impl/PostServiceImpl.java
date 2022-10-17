@@ -17,16 +17,14 @@ import java.util.Optional;
 public class PostServiceImpl implements PostService {
 
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     @Override
     public Post save(Post post, HttpSession session) {
 
 
-        System.out.println("add Post controller visited");
-
         User user = (User) session.getAttribute("user");
-        System.out.println(user.toString());
+//        System.out.println(user.toString());
         post.setUserId(user);
         post.setPostingDate(new Date());
         post.setTotalLike(0);
@@ -52,6 +50,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deleteById(String id) {
-        postRepository.deleteById(id);
+
+        postRepository.deletePostById(id);
     }
 }
