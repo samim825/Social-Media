@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .authorizeRequests()
                 .antMatchers("/assets/**").permitAll()
-                .antMatchers("/login", "/registration").permitAll()
+                .antMatchers("/login", "/registration","/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
