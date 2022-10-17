@@ -25,20 +25,8 @@ public class HomeController {
 
         System.out.println("Home method visited..");
 
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = getPostList(session);
 
-        User user = (User) session.getAttribute("user");
-        User user1 = userService.findByEmail(user.getEmail());
-        List<Post> postList =  user1.getPostList();
-        for(Post post : postList){
-            System.out.println(post.getContent());
-
-            Date date = new Date();
-            Date date1 = post.getPostingDate();
-            System.out.println(DateFormatter.findDateDifference(date, date1));
-        }
-
-        modelAndView.addObject("user", user1);
         modelAndView.setViewName("home");
         return modelAndView;
     }
@@ -65,10 +53,14 @@ public class HomeController {
     }
 
     @GetMapping("/profile")
-    public String profilePage(){
+    public ModelAndView profilePage(HttpSession session){
 
-        System.out.println("profile page visited");
-        return "profile";
+        System.out.println("Home method visited.");
+
+        ModelAndView modelAndView = getPostList(session);
+
+        modelAndView.setViewName("profile");
+        return modelAndView;
     }
 
     @GetMapping("/registration")
@@ -83,5 +75,24 @@ public class HomeController {
 
         System.out.println("login page visited");
         return "login";
+    }
+
+    private ModelAndView getPostList(HttpSession session){
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        User user = (User) session.getAttribute("user");
+        User user1 = userService.findByEmail(user.getEmail());
+        List<Post> postList =  user1.getPostList();
+        for(Post post : postList){
+            System.out.println(post.getContent());
+
+            Date date = new Date();
+            Date date1 = post.getPostingDate();
+            System.out.println(DateFormatter.findDateDifference(date, date1));
+        }
+
+        modelAndView.addObject("user", user1);
+        return modelAndView;
     }
 }
