@@ -20,28 +20,28 @@ public class HomeController {
 
     @Autowired
     private UserServiceImpl userService;
-//    @GetMapping({"/","/home"})
-//    public ModelAndView homePage(HttpSession session){
-//
-//        System.out.println("Home method visited..");
-//
-//        ModelAndView modelAndView = new ModelAndView();
-//
-//        User user = (User) session.getAttribute("user");
-//        User user1 = userService.findByEmail(user.getEmail());
-//        List<Post> postList =  user1.getPostList();
-//        for(Post post : postList){
-//            System.out.println(post.getContent());
-//
-//            Date date = new Date();
-//            Date date1 = post.getPostingDate();
-//            System.out.println(DateFormatter.findDateDifference(date, date1));
-//        }
-//
-//        modelAndView.addObject("user", user1);
-//        modelAndView.setViewName("home");
-//        return modelAndView;
-//    }
+    @GetMapping({"/","/home"})
+    public ModelAndView homePage(HttpSession session){
+
+        System.out.println("Home method visited..");
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        User user = (User) session.getAttribute("user");
+        User user1 = userService.findByEmail(user.getEmail());
+        List<Post> postList =  user1.getPostList();
+        for(Post post : postList){
+            System.out.println(post.getContent());
+
+            Date date = new Date();
+            Date date1 = post.getPostingDate();
+            System.out.println(DateFormatter.findDateDifference(date, date1));
+        }
+
+        modelAndView.addObject("user", user1);
+        modelAndView.setViewName("home");
+        return modelAndView;
+    }
 
     @GetMapping("/about")
     public String aboutPage(){
