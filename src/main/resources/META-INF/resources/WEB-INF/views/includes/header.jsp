@@ -209,7 +209,7 @@
                                 <div class="profile-thumb-small">
                                     <a href="javascript:void(0)" class="profile-triger">
                                         <figure>
-                                            <img src="assets/images/profile/profile-small-1.jpg" alt="profile picture">
+                                            <img src="/home/samimhossain/Downloads/photos/image.jpg" alt="profile picture">
                                         </figure>
                                     </a>
                                     <div class="profile-dropdown">

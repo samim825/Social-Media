@@ -27,6 +27,7 @@
                                     </a>
                                 </figure>
                             </div>
+
                         </div>
                         <div class="col-lg-6 col-md-6 offset-lg-1">
                             <div class="profile-menu-wrapper">
@@ -56,6 +57,11 @@
                 <div class="row">
                     <div class="col-lg-3 order-2 order-lg-1">
                         <aside class="widget-area profile-sidebar">
+
+                            <div class="card">
+                                <button class="edit-btn" aria-disabled="true"  data-toggle="modal" data-target="#updateProfilePicture" >Update Profile Picture</button>
+
+                            </div>
                             <!-- widget single item start -->
                             <div class="card widget-item">
                                 <h4 class="widget-title">kate palson</h4>
@@ -206,6 +212,31 @@
                             </div>
                             <!-- widget single item end -->
                         </aside>
+
+                        <!-- Modal start -->
+                        <div class="modal fade" id="updateProfilePicture" aria-labelledby="textbox">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Share Your Mood</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="/api/image" method="POST" enctype = "multipart/form-data">
+
+                                        <div class="modal-body custom-scroll">
+                                            <input name="file"  type="file" class="share-field-big custom-scroll" placeholder="Say Something"></input>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
+                                            <button type="submit" class="post-share-btn">post</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal end -->
                     </div>
                 </div>
             </div>
