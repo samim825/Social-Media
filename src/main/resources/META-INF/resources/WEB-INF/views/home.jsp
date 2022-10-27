@@ -30,7 +30,7 @@
                                             <img src="assets/images/banner/banner-small.jpg" alt="">
                                         </a>
                                         <a href="profile.jsp" class="profile-thumb-2">
-                                            <img src="assets/images/profile/profile-midle-1.jpg" alt="">
+                                            <img src="data:image;base64,<%=path%>"alt="">
                                         </a>
                                     </figure>
                                     <div class="profile-desc text-center">
