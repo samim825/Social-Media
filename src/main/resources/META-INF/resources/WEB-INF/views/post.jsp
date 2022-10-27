@@ -12,7 +12,7 @@
             <div class="profile-thumb">
                 <a href="#">
                     <figure class="profile-thumb-middle">
-                        <img src="assets/images/profile/profile-small-37.jpg" alt="profile picture">
+                        <img src="data:image;base64,<%=path%>" alt="profile picture">
                     </figure>
                 </a>
             </div>
@@ -149,7 +149,7 @@
             <div class="profile-thumb">
                 <a href="#">
                     <figure class="profile-thumb-middle">
-                        <img src="assets/images/profile/profile-small-9.jpg" alt="profile picture">
+                        <img src="data:image;base64,<%=path%>" alt="profile picture">
                     </figure>
                 </a>
             </div>

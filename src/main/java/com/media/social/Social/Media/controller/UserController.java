@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.swing.*;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -17,10 +19,13 @@ public class UserController {
 
     private final UserService userService;
 
+    private final String DEFAULT_IMAGE_PATH = "/home/samimhossain/Pictures/Screenshots/default_image.jpg";
+
     @PostMapping("/registration")
     public ModelAndView addUser(User user){
 
         log.info("Add new user {} ",user.toString());
+        user.setImage(DEFAULT_IMAGE_PATH);
 
         ModelAndView modelAndView = new ModelAndView();
         try{

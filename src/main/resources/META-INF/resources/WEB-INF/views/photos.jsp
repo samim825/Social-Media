@@ -36,14 +36,7 @@
                             <div class="profile-menu-wrapper">
                                 <div class="main-menu-inner header-top-navigation">
                                     <nav>
-                                        <ul class="main-menu">
-                                            <li class="active"><a href="#">timeline</a></li>
-                                            <li><a href="about.jsp">about</a></li>
-                                            <li><a href="photos.jsp">photos</a></li>
-                                            <li><a href="friends.jsp">friends</a></li>
-                                            <li><a href="about.jsp">more</a></li>
-                                            <!-- <li class="d-inline-block d-md-none"><a href="profile.html">edit profile</a></li> -->
-                                        </ul>
+                                        <%@include file="includes/nav.jsp" %>
                                     </nav>
                                 </div>
                             </div>

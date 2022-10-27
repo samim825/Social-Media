@@ -1,6 +1,7 @@
 package com.media.social.Social.Media.controller;
 
 
+import com.media.social.Social.Media.config.UserPrincipal;
 import com.media.social.Social.Media.helper.DateFormatter;
 import com.media.social.Social.Media.model.Post;
 import com.media.social.Social.Media.model.User;
@@ -12,6 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +25,7 @@ public class HomeController {
     @Autowired
     private UserServiceImpl userService;
     @GetMapping({"/","/home"})
-    public ModelAndView homePage(HttpSession session){
+    public ModelAndView homePage(HttpSession session) throws Exception {
 
         System.out.println("Home method visited..");
 
@@ -32,24 +36,38 @@ public class HomeController {
     }
 
     @GetMapping("/about")
-    public String aboutPage(){
+    public ModelAndView aboutPage(HttpSession session){
 
         System.out.println("about page visited");
-        return "about";
+        User user = (User) session.getAttribute("user");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user",user);
+        modelAndView.setViewName("about");
+        return modelAndView;
     }
 
     @GetMapping("/friends")
-    public String friendsPage(){
+    public ModelAndView friendsPage(HttpSession session){
+
 
         System.out.println("friends page visited");
-        return "friends";
+
+        ModelAndView modelAndView = new ModelAndView();
+        User user = (User) session.getAttribute("user");
+        modelAndView.addObject("user",user);
+        modelAndView.setViewName("friends");
+        return modelAndView;
     }
 
     @GetMapping("/photos")
-    public String photosPage(){
+    public ModelAndView photosPage(HttpSession session){
 
+        ModelAndView modelAndView = new ModelAndView();
+        User user = (User) session.getAttribute("user");
+        modelAndView.addObject("user",user);
         System.out.println("photos page visited");
-        return "photos";
+        modelAndView.setViewName("photos");
+        return modelAndView;
     }
 
     @GetMapping("/profile")

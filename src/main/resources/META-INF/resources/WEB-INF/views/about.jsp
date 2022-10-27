@@ -1,6 +1,8 @@
+<%@page session="false" %>
+
 <!doctype html>
 <html class="no-js" lang="en">
-    
+
 <%@include file="includes/head.jsp" %>
 
 <body>
@@ -32,14 +34,7 @@
                             <div class="profile-menu-wrapper">
                                 <div class="main-menu-inner header-top-navigation">
                                     <nav>
-                                        <ul class="main-menu">
-                                            <li class="active"><a href="#">timeline</a></li>
-                                            <li><a href="about.jsp">about</a></li>
-                                            <li><a href="photos.jsp">photos</a></li>
-                                            <li><a href="friends.jsp">friends</a></li>
-                                            <li><a href="about.jsp">more</a></li>
-                                            <!-- <li class="d-inline-block d-md-none"><a href="profile.html">edit profile</a></li> -->
-                                        </ul>
+                                        <%@include file="includes/nav.jsp" %>
                                     </nav>
                                 </div>
                             </div>
@@ -194,7 +189,7 @@
                             <div class="content-box">
                                 <h5 class="content-title">friends</h5>
                                 <div class="content-body">
-                                    <div class="row mt--20">                                                                              
+                                    <div class="row mt--20">
                                         <% for(int i=1;i<=8;i++){ %>
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="friend-list-view">
@@ -236,7 +231,7 @@
                                             </div>
                                         </div>
                                         <% } %>
-                                        
+
                                         <div class="col-12">
                                             <div class="load-more text-center">
                                                 <button class="load-more-btn">load more</button>
@@ -268,7 +263,7 @@
                                                 </a>
                                             </figure>
                                         </div>
-                                        <% } %>                                       
+                                        <% } %>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
@@ -302,7 +297,7 @@
                                                 </a>
                                             </figure>
                                         </div>
-                                        <% } %>                                      
+                                        <% } %>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
