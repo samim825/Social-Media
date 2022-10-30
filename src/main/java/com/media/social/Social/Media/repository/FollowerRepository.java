@@ -1,19 +1,21 @@
 package com.media.social.Social.Media.repository;
 
-import com.media.social.Social.Media.model.User;
+import com.media.social.Social.Media.model.Follower;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {
+public interface FollowerRepository extends JpaRepository<Follower, String> {
+    List<Follower> findByFollowerId(String id);
 
-    User findByEmail(String email);
     @Transactional
     @Modifying
-    @Query("Update User u SET u.image = ?1 where u.id = ?2")
-    void updateImageOfUser(String path, String id);
+    @Query("Delete from Follower f where f.id = ?1")
+    void deleteFollowerById(String id);
 }

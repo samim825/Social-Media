@@ -1,4 +1,4 @@
-<%@ page import="javax.jws.soap.SOAPBinding" %>
+
 <%@ page import="com.media.social.Social.Media.model.User" %>
 <%@ page import="com.media.social.Social.Media.helper.Converter" %>
 <!-- header area start -->
@@ -180,6 +180,7 @@
                                             </div>
                                         </div>
                                     </li>
+                                    <li ><a href="/userlist">Peoples</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -207,8 +208,8 @@
                             </div>
                             <!-- header top search end -->
                             <%
-                                User user1 = (User) request.getAttribute("user");
-                                String path = Converter.covertPathTo64Base(user1.getImage());
+                                User user2 = (User) request.getAttribute("user");
+                                String path = Converter.covertPathTo64Base(user2.getImage());
 
 //                                String path = Converter.covertPathTo64Base("/home/samimhossain/Pictures/Screenshots/image.jpg");
 

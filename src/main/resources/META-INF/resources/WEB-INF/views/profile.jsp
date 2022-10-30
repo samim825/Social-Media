@@ -23,7 +23,7 @@
                             <div class="profile-picture-box">
                                 <figure class="profile-picture">
                                     <a href="profile.jsp">
-                                        <img src="assets/images/profile/profile-1.jpg" alt="profile picture">
+                                        <img src="data:image;base64,<%=path%>" alt="profile picture">
                                     </a>
                                 </figure>
                             </div>
@@ -33,14 +33,7 @@
                             <div class="profile-menu-wrapper">
                                 <div class="main-menu-inner header-top-navigation">
                                     <nav>
-                                        <ul class="main-menu">
-                                            <li class="active"><a href="#">timeline</a></li>
-                                            <li><a href="about.jsp">about</a></li>
-                                            <li><a href="photos.jsp">photos</a></li>
-                                            <li><a href="friends.jsp">friends</a></li>
-                                            <li><a href="about.jsp">more</a></li>
-                                            <!-- <li class="d-inline-block d-md-none"><a href="profile.html">edit profile</a></li> -->
-                                        </ul>
+                                       <%@include file="includes/nav.jsp" %>
                                     </nav>
                                 </div>
                             </div>
@@ -223,10 +216,10 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="/api/image" method="POST" enctype = "multipart/form-data">
+                                    <form action="/api/image" method="POST" enctype = "multipart/form-data" >
 
                                         <div class="modal-body custom-scroll">
-                                            <input name="file"  type="file" class="share-field-big custom-scroll" placeholder="Say Something"></input>
+                                            <input name="file"  type="file" class="share-field-big custom-scroll" placeholder="Say Something" accept="image/png, image/jpeg" />
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>

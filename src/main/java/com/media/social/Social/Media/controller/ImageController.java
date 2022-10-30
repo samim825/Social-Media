@@ -18,7 +18,7 @@ import java.io.IOException;
 @MultipartConfig
 public class ImageController {
 
-    private final String FOLDER_PATH = "/home/samimhossain/Pictures/Screenshots/";
+    private final String FOLDER_PATH = "/home/dsi/Documents/asset/";
 
 
     @Autowired
@@ -37,8 +37,6 @@ public class ImageController {
         String fileName = user.getId()+"."+file.getOriginalFilename()
                 .substring(
                         file.getOriginalFilename().lastIndexOf(".") + 1);
-
-        System.out.println("User id : "+user.getId());
         user.setImage(FOLDER_PATH+fileName);
 
 
