@@ -46,19 +46,6 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/friends")
-    public ModelAndView friendsPage(HttpSession session){
-
-
-        System.out.println("friends page visited");
-
-        ModelAndView modelAndView = new ModelAndView();
-        User user = (User) session.getAttribute("user");
-        modelAndView.addObject("user",user);
-        modelAndView.setViewName("friends");
-        return modelAndView;
-    }
-
     @GetMapping("/photos")
     public ModelAndView photosPage(HttpSession session){
 

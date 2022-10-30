@@ -67,7 +67,7 @@
                     <div class="col-lg-12">
                         <div class="secondary-menu-wrapper secondary-menu-2 bg-white">
                             <div class="page-title-inner">
-                                <h4 class="page-title">friends (1250)</h4>
+                                <h4 class="page-title">People you may know</h4>
                             </div>
                             <div class="filter-menu">
                                 <button class="active" data-filter="*">all</button>
@@ -102,7 +102,7 @@
                     <div class="col-12">
                         <div class="content-box friends-zone">
                             <div class="row mt--20 friends-list">
-                                <% List<User> allUser = (List<User>) request.getAttribute("followingUser");
+                                <% List<User> allUser = (List<User>) request.getAttribute("existingFollower");
 
                                     for(User users : allUser) {
                                         String imagePath = Converter.covertPathTo64Base(users.getImage());
@@ -121,7 +121,7 @@
 
                                         <div class="posted-author">
                                             <%=users.getFirstName()%> <%=users.getLastName()%>
-                                            <a href="/delete_follower/<%=users.getId()%>" class="btn btn-danger" >Unfollow</a>
+                                            <a href="/update_follower/<%=users.getId()%>" class="btn btn-primary" >Follow</a>
                                         </div>
                                     </div>
                                 </div>
