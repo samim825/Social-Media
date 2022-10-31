@@ -2,7 +2,6 @@
 <html class="no-js" lang="en">
 
 
-<!-- Mirrored from demo.hasthemes.com/adda-preview/adda/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 17:09:34 GMT -->
  <%@include file="includes/head.jsp" %>
 
 <body class="bg-transparent">
@@ -16,7 +15,7 @@
                         <div class="row no-gutters">
                             <div class="col-lg-6 order-2 order-lg-1">
                                 <div class="timeline-bg-content bg-img" data-bg="assets/images/timeline/adda-timeline.jpg">
-                                    <h3 class="timeline-bg-title">Let?s see what?s happening to you and your world. Welcome in Adda.</h3>
+                                    <h3 class="timeline-bg-title">Let's see what's happening to you and your world. Welcome to DSi Adda.</h3>
                                 </div>
                             </div>
                             <div class="col-lg-6 order-1 order-lg-2 d-flex align-items-center justify-content-center">
@@ -82,5 +81,4 @@
 </body>
 
 
-<!-- Mirrored from demo.hasthemes.com/adda-preview/adda/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Jan 2020 17:09:55 GMT -->
 </html>
