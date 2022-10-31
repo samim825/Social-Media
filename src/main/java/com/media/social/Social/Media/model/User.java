@@ -40,10 +40,12 @@ public class User {
     private String image;
 
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ToString.Exclude
     private List<Post> postList;
 
     @OneToMany(mappedBy = "follow_user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
+    @ToString.Exclude
     private List<Follower> followers;
 
 }

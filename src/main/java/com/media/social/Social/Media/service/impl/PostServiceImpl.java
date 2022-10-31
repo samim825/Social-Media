@@ -29,7 +29,7 @@ public class PostServiceImpl implements PostService {
         post.setPostingDate(new Date());
         post.setTotalLike(0);
 
-        System.out.println(post.toString());
+        //System.out.println(post.toString());
         return postRepository.save(post);
     }
 

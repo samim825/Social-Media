@@ -1,3 +1,4 @@
+
 <%@ page import="com.media.social.Social.Media.model.User" %>
 <%@ page import="com.media.social.Social.Media.model.Post" %>
 <%@ page import="java.util.Collections" %>
@@ -133,14 +134,10 @@
 //
 //                            Collections.sort(postList, Comparator.comparing(Post::getPostingDate));
         Collections.sort(postList, (post1, post2) -> post2.getPostingDate().compareTo(post1.getPostingDate()));
-
 //                            Collections.sort(postList, Collections.reverseOrder());
 //                            assertEquals(employees, employeesSortedByDateDesc);
-
         for(Post post : postList){
-
             String date =  DateFormatter.findDateDifference(new Date() , post.getPostingDate());
-
     %>
     <div class="card">
         <!-- post title start -->
@@ -331,4 +328,3 @@
     </div>
 </div>
 <!-- Delete modal end -->
-

@@ -1,6 +1,7 @@
 package com.media.social.Social.Media.controller;
 
 import com.media.social.Social.Media.model.Follower;
+import com.media.social.Social.Media.model.Post;
 import com.media.social.Social.Media.model.User;
 import com.media.social.Social.Media.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,32 @@ public class UserController {
             e.printStackTrace();
         }
 
+
+        return modelAndView;
+    }
+
+
+    @GetMapping("/")
+    public ModelAndView homePage(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = (User) session.getAttribute("user");
+
+        User user2 = userService.findByEmail(user.getEmail());
+        List<Post> posts =  user2.getPostList();
+
+        for(Follower follower : user.getFollowers()) {
+            User user1 = userService.findById(follower.getFollowerId());
+            for(Post post : user1.getPostList()) {
+                posts.add(post);
+            }
+        }
+
+
+        modelAndView.addObject("posts", posts);
+        modelAndView.addObject("user",user);
+
+
+        modelAndView.setViewName("home");
 
         return modelAndView;
     }

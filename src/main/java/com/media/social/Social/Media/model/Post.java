@@ -26,6 +26,7 @@ public class Post {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ToString.Exclude
     private User userId;
 
     @Column(name = "content")
