@@ -3,6 +3,7 @@ package com.media.social.Social.Media.controller;
 
 import com.media.social.Social.Media.config.UserPrincipal;
 import com.media.social.Social.Media.helper.DateFormatter;
+import com.media.social.Social.Media.model.Follower;
 import com.media.social.Social.Media.model.Post;
 import com.media.social.Social.Media.model.User;
 import com.media.social.Social.Media.service.impl.UserServiceImpl;
@@ -24,16 +25,17 @@ public class HomeController {
 
     @Autowired
     private UserServiceImpl userService;
-    @GetMapping({"/","/home"})
-    public ModelAndView homePage(HttpSession session) throws Exception {
 
-        System.out.println("Home method visited..");
+    //@GetMapping({"/","/home"})
+    //public ModelAndView homePage(HttpSession session) throws Exception {
 
-        ModelAndView modelAndView = getPostList(session);
+      //  System.out.println("Home method visited..");
 
-        modelAndView.setViewName("home");
-        return modelAndView;
-    }
+        //ModelAndView modelAndView = getPostList(session);
+
+        //modelAndView.setViewName("home");
+        //return modelAndView;
+    //}
 
     @GetMapping("/about")
     public ModelAndView aboutPage(HttpSession session){
