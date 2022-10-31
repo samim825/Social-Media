@@ -29,12 +29,12 @@
                                         <a href="profile.jsp">
                                             <img src="assets/images/banner/banner-small.jpg" alt="">
                                         </a>
-                                        <a href="profile.jsp" class="profile-thumb-2">
+                                        <a href="#" class="profile-thumb-2">
                                             <img src="data:image;base64,<%=path%>"alt="">
                                         </a>
                                     </figure>
                                     <div class="profile-desc text-center">
-                                        <h6 class="author"><a href="profile.jsp">${user.getFirstName()} ${user.getLastName()}</a></h6>
+                                        <h6 class="author"><a href="/profile">${user.getFirstName()} ${user.getLastName()}</a></h6>
                                         <p>Any one can join with but Social network us if you want Any one can join with us if you want</p>
                                     </div>
                                 </div>

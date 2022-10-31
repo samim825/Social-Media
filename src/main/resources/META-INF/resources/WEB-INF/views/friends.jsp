@@ -40,27 +40,13 @@
                                 <nav>
                                     <ul class="main-menu">
                                         <li class="active"><a href="#">timeline</a></li>
-                                        <li><a href="about">about</a></li>
-                                        <li><a href="photos">photos</a></li>
-                                        <li><a href="friends">friends</a></li>
-                                        <li><a href="about">more</a></li>
+                                        <li><a href="/about">about</a></li>
+                                        <li><a href="/photos">photos</a></li>
+                                        <li><a href="/friends">friends</a></li>
+                                        <li><a href="/about">more</a></li>
                                         <!-- <li class="d-inline-block d-md-none"><a href="profile.html">edit profile</a></li> -->
                                     </ul>
                                 </nav>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 offset-lg-1">
-                            <div class="profile-menu-wrapper">
-                                <div class="main-menu-inner header-top-navigation">
-                                    <nav>
-                                        <%@include file="includes/nav.jsp" %>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-3 d-none d-md-block">
-                            <div class="profile-edit-panel">
-                                <button class="edit-btn">edit profile</button>
                             </div>
                         </div>
                     </div>
