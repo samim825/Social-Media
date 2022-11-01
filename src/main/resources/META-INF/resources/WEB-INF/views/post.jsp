@@ -182,18 +182,17 @@
                 <%=post.getContent() %>
             </p>
             <div class="post-meta">
-                <button class="post-meta-like">
+                <button class="post-meta-like" >
                     <%--                                        <i class="bi bi-heart-beat"></i>--%>
                     <i class="fa fa-thumbs-up"></i>
-                    <span><%=post.getTotalLike() %> people like this</span>
+                    <span ><%=post.getTotalLike().size() %> people like this</span>
                     <strong>206</strong>
                 </button>
                 <ul class="comment-share-meta">
                     <li>
-                        <a href="/#">
+                        <a href="/api/post/like/<%=post.getId()%>" >
                             <img src="assets/images/icons/heart-color.png">
                         </a>
-                        <span><%=post.getTotalLike() %></span>
                     </li>
                 </ul>
             </div>

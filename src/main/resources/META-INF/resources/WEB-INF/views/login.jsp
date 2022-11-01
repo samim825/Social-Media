@@ -35,7 +35,7 @@
                                                     <input type="password" class="single-field" placeholder="Password" name="password" required>
                                                 </div>
                                                 <div class="col-12">
-                                                    <button type"submit" class="submit-btn">Sign in</button>
+                                                    <button type="submit" class="submit-btn">Sign in</button>
                                                 </div>
                                             </div>
                                             <h6 class="terms-condition">Haven't account <a href="/registration">Register here</a></h6>
