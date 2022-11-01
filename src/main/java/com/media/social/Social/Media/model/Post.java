@@ -9,6 +9,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -36,7 +38,8 @@ public class Post {
 //    private String photo;
 
     @Column(name = "total_like")
-    private Integer totalLike;
+    @ElementCollection(targetClass = String.class)
+    private Set<String> totalLike;
 
     @Column(name = "posting_date")
     private Date postingDate;
