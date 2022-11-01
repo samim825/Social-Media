@@ -1,5 +1,6 @@
 package com.media.social.Social.Media.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,33 +12,26 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "post_table")
-public class Post {
+@Entity
+@Table(name = "follower")
+public class Follower {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id",length = 36)
     private String id;
+
+    @Column(name = "follower_id")
+    private String followerId;
+
+    private Date following_date;
+    private boolean enabled;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "follow_user", referencedColumnName = "id", nullable = false)
     @ToString.Exclude
-    private User userId;
-
-    @Column(name = "content")
-    private String content;
-
-//    @Column(name = "photo")
-//    private String photo;
-
-    @Column(name = "total_like")
-    private Integer totalLike;
-
-    @Column(name = "posting_date")
-    private Date postingDate;
+    private User follow_user;
 }

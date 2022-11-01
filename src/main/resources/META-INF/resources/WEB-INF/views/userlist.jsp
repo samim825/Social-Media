@@ -40,14 +40,19 @@
                                 <nav>
                                     <ul class="main-menu">
                                         <li class="active"><a href="#">timeline</a></li>
-                                        <li><a href="/about">about</a></li>
-                                        <li><a href="/photos">photos</a></li>
-                                        <li><a href="/friends">friends</a></li>
-                                        <li><a href="/about">more</a></li>
+                                        <li><a href="about">about</a></li>
+                                        <li><a href="photos">photos</a></li>
+                                        <li><a href="friends">friends</a></li>
+                                        <li><a href="about">more</a></li>
                                         <!-- <li class="d-inline-block d-md-none"><a href="profile.html">edit profile</a></li> -->
                                     </ul>
                                 </nav>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 d-none d-md-block">
+                        <div class="profile-edit-panel">
+                            <button class="edit-btn">edit profile</button>
                         </div>
                     </div>
                 </div>
@@ -62,7 +67,7 @@
                     <div class="col-lg-12">
                         <div class="secondary-menu-wrapper secondary-menu-2 bg-white">
                             <div class="page-title-inner">
-                                <h4 class="page-title">friends (1250)</h4>
+                                <h4 class="page-title">People you may know</h4>
                             </div>
                             <div class="filter-menu">
                                 <button class="active" data-filter="*">all</button>
@@ -97,7 +102,7 @@
                     <div class="col-12">
                         <div class="content-box friends-zone">
                             <div class="row mt--20 friends-list">
-                                <% List<User> allUser = (List<User>) request.getAttribute("followingUser");
+                                <% List<User> allUser = (List<User>) request.getAttribute("existingFollower");
 
                                     for(User users : allUser) {
                                         String imagePath = Converter.covertPathTo64Base(users.getImage());
@@ -116,7 +121,7 @@
 
                                         <div class="posted-author">
                                             <%=users.getFirstName()%> <%=users.getLastName()%>
-                                            <a href="/delete_follower/<%=users.getId()%>" class="btn btn-danger" >Unfollow</a>
+                                            <a href="/update_follower/<%=users.getId()%>" class="btn btn-primary" >Follow</a>
                                         </div>
                                     </div>
                                 </div>

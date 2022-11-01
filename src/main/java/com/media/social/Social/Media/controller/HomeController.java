@@ -1,7 +1,9 @@
 package com.media.social.Social.Media.controller;
 
 
+import com.media.social.Social.Media.config.UserPrincipal;
 import com.media.social.Social.Media.helper.DateFormatter;
+import com.media.social.Social.Media.model.Follower;
 import com.media.social.Social.Media.model.Post;
 import com.media.social.Social.Media.model.User;
 import com.media.social.Social.Media.service.impl.UserServiceImpl;
@@ -12,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -20,10 +25,67 @@ public class HomeController {
 
     @Autowired
     private UserServiceImpl userService;
-    @GetMapping({"/","/home"})
-    public ModelAndView homePage(HttpSession session){
 
-        System.out.println("Home method visited..");
+    //@GetMapping({"/","/home"})
+    //public ModelAndView homePage(HttpSession session) throws Exception {
+
+      //  System.out.println("Home method visited..");
+
+        //ModelAndView modelAndView = getPostList(session);
+
+        //modelAndView.setViewName("home");
+        //return modelAndView;
+    //}
+
+    @GetMapping("/about")
+    public ModelAndView aboutPage(HttpSession session){
+
+        System.out.println("about page visited");
+        User user = (User) session.getAttribute("user");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user",user);
+        modelAndView.setViewName("about");
+        return modelAndView;
+    }
+
+
+    @GetMapping("/photos")
+    public ModelAndView photosPage(HttpSession session){
+
+        ModelAndView modelAndView = new ModelAndView();
+        User user = (User) session.getAttribute("user");
+        modelAndView.addObject("user",user);
+        System.out.println("photos page visited");
+        modelAndView.setViewName("photos");
+        return modelAndView;
+    }
+
+    @GetMapping("/profile")
+    public ModelAndView profilePage(HttpSession session){
+
+        System.out.println("Home method visited.");
+
+        ModelAndView modelAndView = getPostList(session);
+
+        modelAndView.setViewName("profile");
+        return modelAndView;
+    }
+
+    @GetMapping("/registration")
+    public String registrationPage(){
+
+        System.out.println("registration page visited");
+        return "registration";
+    }
+
+    @GetMapping("/login")
+    public String loginPage(){
+
+        System.out.println("login page visited");
+        return "login";
+    }
+
+    private ModelAndView getPostList(HttpSession session){
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -39,49 +101,6 @@ public class HomeController {
         }
 
         modelAndView.addObject("user", user1);
-        modelAndView.setViewName("home");
         return modelAndView;
-    }
-
-    @GetMapping("/about")
-    public String aboutPage(){
-
-        System.out.println("about page visited");
-        return "about";
-    }
-
-    @GetMapping("/friends")
-    public String friendsPage(){
-
-        System.out.println("friends page visited");
-        return "friends";
-    }
-
-    @GetMapping("/photos")
-    public String photosPage(){
-
-        System.out.println("photos page visited");
-        return "photos";
-    }
-
-    @GetMapping("/profile")
-    public String profilePage(){
-
-        System.out.println("profile page visited");
-        return "profile";
-    }
-
-    @GetMapping("/registration")
-    public String registrationPage(){
-
-        System.out.println("registration page visited");
-        return "registration";
-    }
-
-    @GetMapping("/login")
-    public String loginPage(){
-
-        System.out.println("login page visited");
-        return "login";
     }
 }

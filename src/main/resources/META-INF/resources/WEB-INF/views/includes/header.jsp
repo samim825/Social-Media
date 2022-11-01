@@ -1,3 +1,6 @@
+
+<%@ page import="com.media.social.Social.Media.model.User" %>
+<%@ page import="com.media.social.Social.Media.helper.Converter" %>
 <!-- header area start -->
     <header>
         <div class="header-top sticky bg-white d-none d-lg-block">
@@ -177,6 +180,7 @@
                                             </div>
                                         </div>
                                     </li>
+                                    <li ><a href="/userlist">Peoples</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -203,13 +207,21 @@
                                 </form>
                             </div>
                             <!-- header top search end -->
+                            <%
+                                User user2 = (User) request.getAttribute("user");
+                                String path = Converter.covertPathTo64Base(user2.getImage());
+
+//                                String path = Converter.covertPathTo64Base("/home/samimhossain/Pictures/Screenshots/image.jpg");
+
+
+                            %>
 
                             <!-- profile picture start -->
                             <div class="profile-setting-box">
                                 <div class="profile-thumb-small">
                                     <a href="javascript:void(0)" class="profile-triger">
                                         <figure>
-                                            <img src="assets/images/profile/profile-small-1.jpg" alt="profile picture">
+                                            <img src="data:image;base64,<%=path%>" alt="profile picture">
                                         </figure>
                                     </a>
                                     <div class="profile-dropdown">
