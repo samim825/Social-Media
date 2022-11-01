@@ -24,7 +24,8 @@ public class UserController {
     @Autowired
     private final UserService userService;
 
-    private final String DEFAULT_IMAGE_PATH = "/home/samimhossain/Pictures/Screenshots/default_image.jpg";
+    private final String DEFAULT_IMAGE_PATH = "/home/shadman/Documents/default_image.jpg";
+    //private final String DEFAULT_IMAGE_PATH = "/home/samimhossain/Pictures/Screenshots/default_image.jpg";
     //private final String DEFAULT_IMAGE_PATH = "/home/dsi/Documents/asset/default_image.jpg";
 
     @PostMapping("/registration")
