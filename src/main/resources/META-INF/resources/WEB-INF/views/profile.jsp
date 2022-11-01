@@ -255,18 +255,14 @@
 
 <script>
     $(document).ready(function () {
-
         $('.postId').click(function () {
             let id = $(this).attr('data-id');
             console.log("Delete data with id : ", id);
             // $('.post-delete').setAttribute("value",id);
             document.getElementById("post-delete").setAttribute("value",id);
         });
-
         $('#post-delete').click(function (){
             let id = $(this).attr("value");
-
-
             $.ajax({
                 url: '/api/post/id/'+id,
                 method: 'DELETE',
@@ -280,12 +276,9 @@
                 }
             });
         });
-
         $('.edit').click(function (){
-
             let id = $(this).attr('data-id');
             console.log("Edit data with id : ",id);
-
             $.ajax({
                 url: '/api/post/id/'+id,
                 method: 'GET',
@@ -301,8 +294,5 @@
                 }
             });
         });
-
     });
-
-
 </script>

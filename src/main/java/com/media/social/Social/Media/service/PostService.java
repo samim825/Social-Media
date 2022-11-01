@@ -19,4 +19,5 @@ public interface PostService {
 
     void deleteById(String id);
 
+    void findByPostId(String id, HttpSession session);
 }
