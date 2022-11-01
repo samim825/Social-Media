@@ -1,21 +1,15 @@
 package com.media.social.Social.Media.controller;
 
 
-import com.media.social.Social.Media.model.Follower;
 import com.media.social.Social.Media.model.Post;
-import com.media.social.Social.Media.model.User;
 import com.media.social.Social.Media.service.PostService;
-import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/api/post")
@@ -66,6 +60,13 @@ public class PostController {
         postService.findByPostId(id, session);
 
         return "redirect:/profile";
+    }
+
+    @GetMapping("home/like/{id}")
+    public String likeFromHome(@PathVariable String id, HttpSession session){
+        postService.findByPostId(id, session);
+
+        return "redirect:/";
     }
 
 }

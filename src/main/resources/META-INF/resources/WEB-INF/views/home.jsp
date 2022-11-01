@@ -1,11 +1,8 @@
-<%@ page import="com.media.social.Social.Media.model.User" %>
+<%@ page import="com.media.social.Social.Media.helper.DateFormatter" %>
 <%@ page import="com.media.social.Social.Media.model.Post" %>
 <%@ page import="java.util.Collections" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.media.social.Social.Media.helper.DateFormatter" %>
 <%@ page import="java.util.Date" %>
-<%@ page import="org.springframework.beans.factory.annotation.Autowired" %>
-<%@ page import="com.media.social.Social.Media.service.UserService" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
  <%@ page session="true"%>
@@ -210,7 +207,7 @@
                                     </button>
                                     <ul class="comment-share-meta">
                                         <li>
-                                            <a href="/api/post/like/<%=post.getId()%>" >
+                                            <a href="/api/post/home/like/<%=post.getId()%>" >
                                                 <img src="assets/images/icons/heart-color.png">
                                             </a>
                                         </li>
