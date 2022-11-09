@@ -115,7 +115,7 @@
                                         <!-- profile picture end -->
 
                                         <div class="posted-author">
-                                            <%=users.getFirstName()%> <%=users.getLastName()%>
+                                            <a href="/<%=users.getId()%>"><%=users.getFirstName()%> <%=users.getLastName()%></a>
                                             <a href="/delete_follower/<%=users.getId()%>" class="btn btn-danger" >Unfollow</a>
                                         </div>
                                     </div>

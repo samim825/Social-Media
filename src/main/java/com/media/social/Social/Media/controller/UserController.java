@@ -24,8 +24,8 @@ public class UserController {
     @Autowired
     private final UserService userService;
 
-    private final String DEFAULT_IMAGE_PATH = "/home/samimhossain/Pictures/Screenshots/default_image.jpg";
-    //private final String DEFAULT_IMAGE_PATH = "/home/dsi/Documents/asset/default_image.jpg";
+    //private final String DEFAULT_IMAGE_PATH = "/home/samimhossain/Pictures/Screenshots/default_image.jpg";
+    private final String DEFAULT_IMAGE_PATH = "/home/dsi/Documents/asset/default_image.jpg";
 
     @PostMapping("/registration")
     public ModelAndView addUser(User user){
@@ -114,6 +114,28 @@ public class UserController {
 
         List<Follower> followers = user.getFollowers();
 
+        List<User> followingUser = new ArrayList<>();
+
+        for(Follower follow : followers) {
+            User user1 = userService.findById(follow.getFollowerId());
+            if(user.getId().equals(user1.getId())) continue;
+            followingUser.add(user1);
+        }
+
+        modelAndView.addObject("followingUser", followingUser);
+        modelAndView.addObject("user",user);
+
+        modelAndView.setViewName("friends");
+        return modelAndView;
+
+    }
+
+    @GetMapping("/friends/{id}")
+    public ModelAndView individualFriendListPage(@PathVariable("id") String id){
+        ModelAndView modelAndView = new ModelAndView();
+
+        User user = userService.findById(id);
+        List<Follower> followers = user.getFollowers();
         List<User> followingUser = new ArrayList<>();
 
         for(Follower follow : followers) {

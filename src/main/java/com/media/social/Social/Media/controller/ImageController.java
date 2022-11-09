@@ -18,8 +18,8 @@ import java.io.IOException;
 @MultipartConfig
 public class ImageController {
 
-    //private final String FOLDER_PATH = "/home/dsi/Documents/asset/";
-    private final String FOLDER_PATH = "/home/samimhossain/Pictures/Screenshots/";
+    private final String FOLDER_PATH = "/home/dsi/Documents/asset/";
+    //private final String FOLDER_PATH = "/home/samimhossain/Pictures/Screenshots/";
 
 
     @Autowired
