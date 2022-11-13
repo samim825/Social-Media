@@ -130,4 +130,26 @@ public class UserController {
         return modelAndView;
 
     }
+
+    @GetMapping("/friends/{id}")
+    public ModelAndView individualFriendListPage(@PathVariable("id") String id){
+        ModelAndView modelAndView = new ModelAndView();
+
+        User user = userService.findById(id);
+        List<Follower> followers = user.getFollowers();
+        List<User> followingUser = new ArrayList<>();
+
+        for(Follower follow : followers) {
+            User user1 = userService.findById(follow.getFollowerId());
+            if(user.getId().equals(user1.getId())) continue;
+            followingUser.add(user1);
+        }
+
+        modelAndView.addObject("followingUser", followingUser);
+        modelAndView.addObject("user",user);
+
+        modelAndView.setViewName("friends");
+        return modelAndView;
+
+    }
 }

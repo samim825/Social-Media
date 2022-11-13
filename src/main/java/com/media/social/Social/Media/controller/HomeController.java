@@ -10,12 +10,14 @@ import com.media.social.Social.Media.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -68,6 +70,19 @@ public class HomeController {
         ModelAndView modelAndView = getPostList(session);
 
         modelAndView.setViewName("profile");
+        return modelAndView;
+    }
+
+    @GetMapping("/{id}")
+    public ModelAndView individualProfilePage(@PathVariable String id) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.findById(id);
+        List<Post> posts = user.getPostList();
+        modelAndView.addObject("posts", posts);
+        modelAndView.addObject("user",user);
+        modelAndView.setViewName("oneprofile");
+
         return modelAndView;
     }
 
