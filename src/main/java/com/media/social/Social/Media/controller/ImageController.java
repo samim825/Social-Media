@@ -29,18 +29,12 @@ public class ImageController {
     @PostMapping
     public String saveImage(MultipartFile file, HttpSession session) throws IOException {
 
-
-
-
-
-
         User user = (User) session.getAttribute("user");
 
         String fileName = user.getId()+"."+file.getOriginalFilename()
                 .substring(
                         file.getOriginalFilename().lastIndexOf(".") + 1);
         user.setImage(FOLDER_PATH+fileName);
-
 
         file.transferTo(new File(FOLDER_PATH+fileName));
         userService.save(user);
