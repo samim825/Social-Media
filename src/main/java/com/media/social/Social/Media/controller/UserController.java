@@ -108,48 +108,55 @@ public class UserController {
     }
 
     @GetMapping("/friends")
-    public ModelAndView followerListPage(HttpSession session){
+    public ModelAndView followerListPage(HttpSession session,
+                                        @RequestParam(value = "id", required = false) String id){
         ModelAndView modelAndView = new ModelAndView();
-
-        User user = (User) session.getAttribute("user");
-
-        List<Follower> followers = user.getFollowers();
-
-        List<User> followingUser = new ArrayList<>();
-
-        for(Follower follow : followers) {
-            User user1 = userService.findById(follow.getFollowerId());
-            if(user.getId().equals(user1.getId())) continue;
-            followingUser.add(user1);
+        User user = null;
+        if(id != null){
+            user = userService.findById(id);
+        }else{
+            user = (User) session.getAttribute("user");
         }
 
-        modelAndView.addObject("followingUser", followingUser);
-        modelAndView.addObject("user",user);
+        if(user != null){
+            List<Follower> followers = user.getFollowers();
 
-        modelAndView.setViewName("friends");
-        return modelAndView;
+            List<User> followingUser = new ArrayList<>();
 
-    }
+            for(Follower follow : followers) {
+                User user1 = userService.findById(follow.getFollowerId());
+                if(user.getId().equals(user1.getId())) continue;
+                followingUser.add(user1);
+            }
 
-    @GetMapping("/friends/{id}")
-    public ModelAndView individualFriendListPage(@PathVariable("id") String id){
-        ModelAndView modelAndView = new ModelAndView();
+            modelAndView.addObject("followingUser", followingUser);
+            modelAndView.addObject("user",user);
 
-        User user = userService.findById(id);
-        List<Follower> followers = user.getFollowers();
-        List<User> followingUser = new ArrayList<>();
-
-        for(Follower follow : followers) {
-            User user1 = userService.findById(follow.getFollowerId());
-            if(user.getId().equals(user1.getId())) continue;
-            followingUser.add(user1);
+            modelAndView.setViewName("friends");
         }
-
-        modelAndView.addObject("followingUser", followingUser);
-        modelAndView.addObject("user",user);
-
-        modelAndView.setViewName("friends");
         return modelAndView;
-
     }
+
+//    @GetMapping("/friends/{id}")
+//    public ModelAndView individualFriendListPage(HttpSession session,
+//                                                 @PathVariable("id") String id){
+//        ModelAndView modelAndView = new ModelAndView();
+//
+//        User user = userService.findById(id);
+//        List<Follower> followers = user.getFollowers();
+//        List<User> followingUser = new ArrayList<>();
+//
+//        for(Follower follow : followers) {
+//            User user1 = userService.findById(follow.getFollowerId());
+//            if(user.getId().equals(user1.getId())) continue;
+//            followingUser.add(user1);
+//        }
+//
+//        modelAndView.addObject("followingUser", followingUser);
+//        modelAndView.addObject("user",user);
+//
+//        modelAndView.setViewName("friends");
+//        return modelAndView;
+//
+//    }
 }

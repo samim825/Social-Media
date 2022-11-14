@@ -100,7 +100,7 @@
                                         <li class="active"><a href="#">timeline</a></li>
                                         <li><a href="/about">about</a></li>
                                         <li><a href="/photos">photos</a></li>
-                                        <li><a href="/friends/<%=user2.getId()%>">friends</a></li>
+                                        <li><a href="/friends?id=<%=user2.getId()%>">friends</a></li>
                                         <li><a href="#">more</a></li>
                                     </ul>
                                 </nav>
